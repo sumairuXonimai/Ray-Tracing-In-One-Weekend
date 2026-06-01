@@ -13,7 +13,7 @@ std::uniform_int_distribution<int> distr(1, 100);
 
 color ray_color(const ray& r, const hittable& world) {
 	hit_record rec;
-	auto t = world.hit(r, 0, infinity, rec);
+	auto t = world.hit(r, interval(0, infinity), rec);
 	if (t) {
 		return 0.5 * (rec.normal + vec3(1, 1, 1)); 
 	}
