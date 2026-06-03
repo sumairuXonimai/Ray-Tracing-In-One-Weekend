@@ -12,6 +12,12 @@ public:
 	int    image_width       = 100;
 	int	   samples_per_pixel = 10;	
 	int    max_depth		 = 10;
+	
+	double vfov     = 90;
+	point3 lookfrom = point3(0, 0, 0);
+	point3 lookat   = point3(0, 0, -1);
+	vec3   vup	    = vec3(0, 1, 0);
+	
 
 	void render(const hittable& world) {
 		initialize();
@@ -44,21 +50,30 @@ private:
 		image_height = (image_height < 1) ? 1 : image_height;
 		
 		// Camera
-		auto focal_length = 1.0;
-		auto viewport_height = 2.0;
+		auto focal_length = (lookfrom - lookat).length();
+		auto theta = degrees_to_radians(vfov);
+		auto h = std::tan(theta / 2);
+
+		auto viewport_height = 2.0 * h * focal_length;
 		auto viewport_width = viewport_height * (double(image_width) / image_height);
-		center = point3(0, 0, 0);
+		
+		center = lookfrom;
+		
+		// New unit basis vectors
+		auto w = unit_vector(lookfrom - lookat);
+		auto u = unit_vector(cross(vup, w));
+		auto v = cross(w, u);
 		
 		// vectors across the horizontal/vertical viewport edges
-		auto viewport_u = vec3(viewport_width, 0, 0);
-		auto viewport_v = vec3(0, -viewport_height, 0);
+		auto viewport_u = viewport_width * u;
+		auto viewport_v = viewport_height * -v;
 		
 		// Calculate the horizontal/vertical delta from pixel to pixel
 		pixel_delta_u = viewport_u / image_width;
 		pixel_delta_v = viewport_v / image_height;
 		
 		// Calculate the first pixel's position
-		auto viewport_upper_left = center - viewport_u / 2 - viewport_v / 2 - vec3(0, 0, focal_length);
+		auto viewport_upper_left = center - viewport_u / 2 - viewport_v / 2 - focal_length * w;
 		pixel00_loc = viewport_upper_left + pixel_delta_u / 2 + pixel_delta_v / 2;
 	}
 	
