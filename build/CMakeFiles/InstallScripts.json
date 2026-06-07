@@ -1,7 +1,0 @@
-{
-	"InstallScripts" : 
-	[
-		"C:/Projects/Graphics/Ray Tracing/build/cmake_install.cmake"
-	],
-	"Parallel" : false
-}

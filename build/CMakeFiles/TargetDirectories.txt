@@ -1,3 +1,0 @@
-C:/Projects/Graphics/Ray Tracing/build/CMakeFiles/inOneWeekend.dir
-C:/Projects/Graphics/Ray Tracing/build/CMakeFiles/ALL_BUILD.dir
-C:/Projects/Graphics/Ray Tracing/build/CMakeFiles/ZERO_CHECK.dir
