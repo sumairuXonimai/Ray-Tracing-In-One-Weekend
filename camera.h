@@ -21,10 +21,10 @@ public:
 	double defocus_angle = 0;
 	double focus_dist = 10;
 
-	void render(const hittable& world) {
+	void render(std::ofstream& out, const hittable& world) {
 		initialize();
 		
-		std::cout << "P3\n" << image_width << ' ' << image_height << "\n255\n";
+		out << "P3\n" << image_width << ' ' << image_height << "\n255\n";
 		for (int j = 0; j < image_height; j++) {
 			for (int i = 0; i < image_width; i++) {
 				color pixel_color(0, 0, 0);
@@ -32,7 +32,7 @@ public:
 					ray r = get_ray(i, j);
 					pixel_color += ray_color(r, max_depth, world);
 				}
-				write_color(std::cout, pixel_color * pixel_samples_scale);
+				write_color(out, pixel_color * pixel_samples_scale);
 			}
 		}
 	}

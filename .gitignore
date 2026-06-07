@@ -1,0 +1,13 @@
+# Visual Studio temporary files
+.vs/
+out/
+build/
+
+# Compiled binaries
+*.exe
+*.obj
+*.pdb
+
+# Ray Tracing Output (don't upload giant images to Git!)
+*.ppm
+renders/

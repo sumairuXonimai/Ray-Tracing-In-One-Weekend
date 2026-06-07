@@ -6,6 +6,10 @@
 #include "material.h"
 
 int main() {
+	std::ofstream out("renders/output.ppm");
+
+	std::cout << "Current path is: " << std::filesystem::current_path() << std::endl;
+
 	// World
 	hittable_list world;
 	
@@ -62,5 +66,5 @@ int main() {
 	cam.defocus_angle = 0.6;
     cam.focus_dist    = 10.0;
 	
-	cam.render(world);
+	cam.render(out, world);
 }

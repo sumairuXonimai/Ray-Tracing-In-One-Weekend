@@ -2,7 +2,9 @@
 #define RTWEEKEND_H
 
 #include <cmath>
+#include <fstream>
 #include <iostream>
+#include <filesystem>
 #include <limits>
 #include <memory>
 #include <random>
