@@ -15,4 +15,4 @@ if(MSVC)
     )
 endif()
 
-add_executable(inOneWeekend main.cc)
+add_executable(inOneWeekend main.cc "bvh.h")
