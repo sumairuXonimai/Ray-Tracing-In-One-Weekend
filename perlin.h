@@ -37,6 +37,20 @@ public:
 
 		return perlin_interp(c, u, v, w);
 	}
+
+	double turbulence(const point3& p, int depth) const {
+		double weight = 1.0;
+		double scale = 1.0;
+
+		auto sum = 0.0;
+		for (int i = 0; i < depth; i++) {
+			sum += weight * noise(scale * p);
+			weight *= 0.5;
+			scale *= 2.0;
+		}
+
+		return std::fabs(sum);
+	}
 private:
 	static const int point_count = 256;
 	vec3 randvec[point_count];
