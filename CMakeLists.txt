@@ -15,4 +15,4 @@ if(MSVC)
     )
 endif()
 
-add_executable(inOneWeekend main.cc "bvh.h" "texture.h" "perlin.h"  "quad.h")
+add_executable(inOneWeekend main.cc "bvh.h" "texture.h" "perlin.h"  "quad.h" )
