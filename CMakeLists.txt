@@ -15,4 +15,10 @@ if(MSVC)
     )
 endif()
 
-add_executable(inOneWeekend main.cc "bvh.h" "texture.h" "perlin.h"  "quad.h" )
+if(OpenMP_CXX_FOUND)
+    target_link_libraries(inOneWeekend PUBLIC OpenMP::OpenMP_CXX)
+endif()
+
+find_package(OpenMP REQUIRED)
+
+add_executable(inOneWeekend main.cc "bvh.h" "texture.h" "perlin.h"  "quad.h"  "onb.h" "pdf.h")
